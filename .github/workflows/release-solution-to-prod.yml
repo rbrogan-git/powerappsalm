@@ -29,7 +29,7 @@ jobs:
     - name: Import solution as unmanaged to build env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
-        environment-url: 'https://org372142d9.crm.dynamics.com'
+        environment-url: 'https://test-orgff7d46cc.crm.dynamics.com'
         user-name: 'sa@rogerthatdev.onmicrosoft.com'
         password-secret: ${{ secrets.password }}
         solution-file: out/solutions/ALMLab.zip
@@ -39,7 +39,7 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: 'https://org372142d9.crm.dynamics.com'
+        environment-url: 'https://test-orgff7d46cc.crm.dynamics.com'
         user-name: 'sa@rogerthatdev.onmicrosoft.com'
         password-secret: ${{ secrets.password }}
         solution-name: ALMLab
@@ -52,7 +52,7 @@ jobs:
         name: managedSolutions
         path: out/ship/ALMLab.zip
 
-  release-to-staging:
+  release-to-prod:
     needs: [ convert-to-managed ]
     runs-on: windows-latest
     env:
@@ -74,7 +74,7 @@ jobs:
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
-        environment-url: 'https://org24daf59b.crm.dynamics.com/'
+        environment-url: 'https://prod-org372142d9.crm.dynamics.com/'
         user-name: 'sa@rogerthatdev.onmicrosoft.com'
         password-secret: ${{ secrets.password }}
         solution-file: out/release/ALMLab.zip
